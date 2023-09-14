@@ -1,13 +1,19 @@
 import React from "react";
 import { View, StyleSheet, Text } from "react-native";
+import { useNavigation } from '@react-navigation/native';
+
+
 import ArticleList from "./ArticleList";
 import CategoriesScreen from "./CategoriesScreen";
 
 const HomeScreen = () => {
+  // Prep for navigation when rendering the other screens
+  const navigation = useNavigation();
+  
   return (
     <View style={styles.container}>
       {/* <CategoriesScreen/> */}
-      <ArticleList />
+      <ArticleList navigation={navigation}/>
     </View>
   );
 };
@@ -19,6 +25,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexWrap: "wrap",
   },
+  
   categoryButton: {
     padding: 12,
     marginVertical: 8,

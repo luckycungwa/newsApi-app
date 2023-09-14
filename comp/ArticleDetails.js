@@ -1,16 +1,23 @@
 import React from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
 // Navigation
 import ArticleList from "./ArticleList";
 
-const ArticleDetails = ({ navigation }) => {
+const ArticleDetails = ({ route }) => {
 
+  const { article } = route.params;
 
   return (
-    <View style={styles.categoryContainer}>
-     
-          <Text style={styles.categoryText}>Article Details</Text>
+    <View style={styles.container}>
+      <Image source={{ uri: article.urlToImage }} style={styles.articleImage} />
+      <View style={styles.subTextContainer}>
+      <Text style={styles.articleSubText}>{article.author}</Text>
+        <Text style={styles.articleSubText}>{article.source.name}</Text>
         
+      </View>
+      
+      <Text style={styles.articleTitle}>{article.title}</Text>
+      <Text style={styles.articleDescription}>{article.content}</Text>
     </View>
   );
 };
@@ -18,26 +25,39 @@ const ArticleDetails = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    padding: 16,
+    alignItems: 'center',
   },
-  categoryButton: {
-    padding: 12,
-    marginVertical: 8,
-    borderRadius: 5,
-    borderWidth: 1.5,
-    borderColor: "#2424245",
+  articleImage: {
+    width: '100%',
+    height: 200,
+    borderRadius: 4,
+    marginBottom: 10,
   },
-  categoryText: {
+  articleTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    letterSpacing: 0.5
+  },
+  articleDescription: {
+    fontSize: 16,
+  },
+  articleSubText: {
     fontSize: 12,
-    letterSpacing: 1.2,
+    fontWeight: 'bold',
+    color: "#e8e8e8"
   },
-  categoryContainer: {
-    justifyContent: "center",
-    alignItems: "center",
+  subTextContainer: {
     flexDirection: "row",
-    gap: 8,
-  },
+  justifyContent: 'space-between',
+  backgroundColor: '#fafafa',
+  padding: 8,
+  marginVertical: "12",
+  width: "100%",
+  height: "auto",
+
+  }
 });
 
 export default ArticleDetails;

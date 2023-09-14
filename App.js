@@ -3,6 +3,8 @@ import { StyleSheet, Text, View } from 'react-native';
 // Navigation stuff
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import { useNavigation } from '@react-navigation/native';
+
 // omponents imports
 import HomeScreen from './comp/HomeScreen';
 import CategoriesScreen from './comp/CategoriesScreen';
@@ -23,12 +25,13 @@ export default function App() {
 
 {/* Middle/ main view */}
       <View style={styles.middle}>
-        <Stack.Navigator initialRouteName="Home">
+        {/* <Stack.Navigator initialRouteName="Home"> */}
+        <Stack.Navigator>
           {/* List of Screens/components for navigation */}
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen name="Categories" component={CategoriesScreen} />
           <Stack.Screen name="Articles" component={ArticleList} />
-          {/* <Stack.Screen name="Articles" component={ArticleDetails} /> */}
+          <Stack.Screen name="ArticleDetails" component={ArticleDetails} />
         </Stack.Navigator>
       </View>
 {/* Bottom View */}

@@ -11,14 +11,15 @@ import {
   ScrollView,
 } from "react-native";
 // navigation sauces
-import { NavigationContainer } from "@react-navigation/native";
+
+// import { NavigationContainer, useNavigation  } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 // Componengts
 import { fetchNewsData } from "../NewsData";
 
 const Stack = createStackNavigator();
 
-const ArticleList = () => {
+const ArticleList = ({navigation}) => {
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
@@ -39,6 +40,7 @@ const ArticleList = () => {
   const renderItem = ({ item }) => (
       <TouchableOpacity
         style={styles.articleItem}
+        // the navigation prop is from the parent (HomeScreen)
         onPress={() => navigation.navigate("ArticleDetails", { article: item })}
       >
         <View style={styles.imageContainer}>
@@ -50,6 +52,10 @@ const ArticleList = () => {
         <View style={styles.articleInfo}>
           <Text style={styles.articleTitle}>{item.title}</Text>
           <Text style={styles.articleDescription}>{item.description}</Text>
+        </View>
+        <View style={styles.articleInfo}>
+        <Text style={styles.articlelabel}>{item.autor}</Text>
+          <Text style={styles.articlelabel}>{item.publishedAt}</Text>
         </View>
       </TouchableOpacity>
     
@@ -65,7 +71,8 @@ const ArticleList = () => {
       <ScrollView scrollEnabled="true">
         <FlatList
           data={articles}
-          keyExtractor={(item) => item.title}
+          // keyExtractor={(item) => item.title}
+          keyExtractor={(item, index) => `${item.title}-${index}`} // combining title and index as key to avoid du=plication
           renderItem={renderItem}
         />
       </ScrollView>
@@ -110,6 +117,8 @@ const styles = StyleSheet.create({
     color: "#1c1c1c",
   },
   articleContainer: {
+    flex: 1,
+    // gap: 4,
     flexDirection: "column",
     margin: 4,
     paddingVertical: 4,

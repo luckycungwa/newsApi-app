@@ -1,7 +1,7 @@
 import React from "react";
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 
-const CategoriesScreen = () => {
+const CategoriesScreen = ({navigation}) => {
   // set up categories
   const categories = [
     { name: "All" },
