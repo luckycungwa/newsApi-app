@@ -19,6 +19,7 @@ import { fetchNewsData } from "../NewsData";
 
 const Stack = createStackNavigator();
 
+
 const ArticleList = ({navigation}) => {
   const [articles, setArticles] = useState([]);
 
@@ -37,7 +38,8 @@ const ArticleList = ({navigation}) => {
     fetchArticles();
   }, []);
 
-  const renderItem = ({ item }) => (
+  const renderItem = ({ item, category }) => (
+    
       <TouchableOpacity
         style={styles.articleItem}
         // the navigation prop is from the parent (HomeScreen)
@@ -54,8 +56,8 @@ const ArticleList = ({navigation}) => {
           <Text style={styles.articleDescription}>{item.description}</Text>
         </View>
         <View style={styles.articleInfo}>
-        <Text style={styles.articlelabel}>{item.autor}</Text>
-          <Text style={styles.articlelabel}>{item.publishedAt}</Text>
+        <Text style={styles.articleLabel}>{item.autor}</Text>
+          <Text style={styles.articleLabel}>{item.publishedAt}</Text>
         </View>
       </TouchableOpacity>
     
@@ -71,7 +73,7 @@ const ArticleList = ({navigation}) => {
       <ScrollView scrollEnabled="true">
         <FlatList
           data={articles}
-          // keyExtractor={(item) => item.title}
+          // keyExtractor={(item) => item.title}  || does not work
           keyExtractor={(item, index) => `${item.title}-${index}`} // combining title and index as key to avoid du=plication
           renderItem={renderItem}
         />
@@ -123,7 +125,7 @@ const styles = StyleSheet.create({
     margin: 4,
     paddingVertical: 4,
     // paddingHorizontal: 12,
-    borderColor: "#ff6f6f", //for content loader
+    // borderColor: "#ff6f6f", //for content loader
     borderWidth: 1,
     width: "100%",
     flexWrap: "wrap",
@@ -132,6 +134,15 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     flexWrap: "wrap",
     width: "auto",
+    
+  },
+  articleLabel: {
+    marginVertical: 8,
+    marginHorizontal: 4,
+    flexDirection: "column",
+    flexWrap: "wrap",
+    width: "auto",
+    fontSize: 10,
     
   },
 });

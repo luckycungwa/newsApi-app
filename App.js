@@ -49,16 +49,16 @@ const styles = StyleSheet.create({
 container: {
   flex: 1,
   justifyContent: 'space-between',
-  backgroundColor: '#ff2323',
+  // backgroundColor: '#ff2323',
   padding: 12,
   margin: 0,
 },
 top: {
-  flex: 0.1,
-  backgroundColor: "#3582ff",
-  borderWidth: 2,
-  // borderTopLeftRadius: 20,
-  // borderTopRightRadius: 20,
+  // flex: 0.1,
+  // backgroundColor: "#3582ff",
+  // borderWidth: 2,
+  // // borderTopLeftRadius: 20,
+  // // borderTopRightRadius: 20,
 },
 middle: {
   flex: 1,

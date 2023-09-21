@@ -12,8 +12,9 @@ const HomeScreen = () => {
   
   return (
     <View style={styles.container}>
-      {/* <CategoriesScreen/> */}
+      <CategoriesScreen/>
       <ArticleList navigation={navigation}/>
+
     </View>
   );
 };
